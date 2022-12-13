@@ -75,7 +75,7 @@ const db = getFirestore(firebase);
             this.chats=[];
             var query = await getDocs(collection(db, "messages"));
             query.forEach((doc)=>{
-                if (doc.data().from == this.$store.state.username && doc.data().to == this.to) {
+                if (doc.data().from == this.$store.state.username || doc.data().to == this.to) {
                     var chat = doc.data();
                     chat['id'] = doc.id;
                     this.chats.push(chat);   
@@ -162,6 +162,7 @@ const db = getFirestore(firebase);
         text-align: right;
         list-style: none;
         padding: 30px;
+        overflow-y: auto;
     }
     .kanan span, .kiri span{
         background-color: rgb(177, 111, 238);
